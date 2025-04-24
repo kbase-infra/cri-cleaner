@@ -9,9 +9,13 @@ RUN apt-get update && apt-get install -y \
 
 
 ARG CRICTL_VERSION="v1.33.0"
-RUN curl -L "https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.33.0/crictl-v1.33.0-linux-amd64.tar.gz" \
-    | tar -xz -C /usr/local/bin/
-
+RUN echo "Downloading crictl version ${CRICTL_VERSION}..." && \
+    curl -L "https://github.com/kubernetes-sigs/cri-tools/releases/download/${CRICTL_VERSION}/crictl-${CRICTL_VERSION}-linux-amd64.tar.gz" -o /tmp/crictl.tar.gz && \
+    echo "Download complete. Extracting..." && \
+    tar -xzf /tmp/crictl.tar.gz -C /usr/local/bin/ && \
+    echo "Extraction complete. Cleaning up..." && \
+    rm /tmp/crictl.tar.gz && \
+    echo "crictl installed successfully."
 
 # Copy the script into the container.
 # We'll define the script content below or assume it's in a local file named 'prune_loop.sh'.
