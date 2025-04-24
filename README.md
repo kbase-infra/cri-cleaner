@@ -1,4 +1,4 @@
-MicroK8s Container Image Pruner DaemonSet
+# MicroK8s Container Image Pruner DaemonSet
 
 This project provides a Kubernetes DaemonSet designed to run on each node in a MicroK8s cluster. Its purpose is to periodically prune unused container images using the crictl rmi --prune command, helping to reclaim disk space on your nodes.
 How it Works
