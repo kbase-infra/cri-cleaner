@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: crictl-image-pruner
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: crictl-image-pruner
+  template:
+    metadata:
+      labels:
+        app: crictl-image-pruner
+    spec:
+      hostNetwork: true
+      containers:
+      - name: pruner
+        image: your-docker-registry/crictl-image-pruner-built-in:latest # Replace with your image name and tag
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: containerd-sock
+          mountPath: /var/snap/microk8s/common/run/containerd.sock
+          readOnly: true
+      volumes:
+      - name: containerd-sock
+        hostPath:
+          # Specify the path to the containerd socket on the host node
+          path: /var/snap/microk8s/common/run/containerd.sock
+          type: Socket # Indicate that this is a socket file
