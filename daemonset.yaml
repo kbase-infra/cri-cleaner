@@ -17,7 +17,7 @@ spec:
       hostNetwork: true
       containers:
       - name: pruner
-        image:  pull ghcr.io/kbase-infra/cri-cleaner:develop # Replace with your image name and tag
+        image:  ghcr.io/kbase-infra/cri-cleaner:develop
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: containerd-sock
