@@ -8,6 +8,8 @@ spec:
     matchLabels:
       app: crictl-image-pruner
   template:
+    tolerations:
+      - operator: Exists
     metadata:
       labels:
         app: crictl-image-pruner
