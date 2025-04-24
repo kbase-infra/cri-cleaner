@@ -7,13 +7,11 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
-# Download crictl
-# Find the latest release version from https://github.com/kubernetes-sigs/cri-tools/releases
-# Replace 'v1.33.0' with the desired version compatible with your MicroK8s version.
-# You might need to adjust the architecture if not amd64.
+
 ARG CRICTL_VERSION="v1.33.0"
-RUN curl -L "https://github.com/kubernetes-sigs/cri-tools/releases/download/${CRICTL_VERSION}/crictl-${CRICTL_VERSION}-linux-amd64.tar.gz" \
+RUN curl -L "https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.33.0/crictl-v1.33.0-linux-amd64.tar.gz" \
     | tar -xz -C /usr/local/bin/
+
 
 # Copy the script into the container.
 # We'll define the script content below or assume it's in a local file named 'prune_loop.sh'.
