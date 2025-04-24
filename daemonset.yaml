@@ -15,7 +15,7 @@ spec:
       hostNetwork: true
       containers:
       - name: pruner
-        image: your-docker-registry/crictl-image-pruner-built-in:latest # Replace with your image name and tag
+        image:  pull ghcr.io/kbase-infra/cri-cleaner:develop # Replace with your image name and tag
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: containerd-sock
